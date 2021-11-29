@@ -32,7 +32,8 @@ A recommended radius is 3 for all droplets, initially. A recommended osmolarity 
 
 
 ```julia
-#= Let's create a matrix that has two droplets next to each other on the x-axis. These droplets should oscillate for a bit, and then diffusion will occur when velocity reaches zero. Additionally, let the droplets be initially at rest when this simulation begins: =#
+#= Let's create a matrix that has two droplets next to each other on the x-axis. These droplets should oscillate for a bit, and then diffusion will occur when velocity reaches zero. 
+Additionally, let the droplets be initially at rest when this simulation begins: =#
 include("E:/Research Scripts and Functions/Julia Scripts/mydropletvectorjcomponents.jl")
 using .MyDropletVectorJComponents
 using LinearAlgebra
