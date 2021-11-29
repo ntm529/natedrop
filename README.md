@@ -17,12 +17,15 @@ Column 6: X-velocity
 Column 7: Y-velocity
 Column 8: Z-velocity
 
-- Additionally, the natural length between each droplet, **L** needs to be specified for the function. A lower **L** value will have the droplets stick closer together. 
-- A recommended **L**-value is 0.8  
-- The bilayer attraction is represented as a linear spring of stiffness **K**.
-- A recommended K-value is 1000.0
+A recommended radius is 3 for all droplets, initially. A recommended osmolarity would be either 0.1 or 1 for your droplets. 
+
+- Additionally, the natural length between each droplet, **L** needs to be specified for the function. A lower **L** value will have the droplets stick closer together. A recommended **L**-value is 0.8 
+- The bilayer attraction is represented as a linear spring of stiffness **K**. A recommended K-value is 1000.0
+- Instead of treating each droplet mass as constant, a density of **rho** is instead used. A recommended **rho** value is 0.2 
 - To make the diffusion between droplets begin when the velocities have hit zero, set boolean_osm to [0.0] 
-- The time end needs to be specified 
+- The time end needs to be specified for the ODE. A **timeend** of 250.0 seconds is recommended.
+
+
 
 ```julia
 
