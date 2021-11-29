@@ -3,7 +3,7 @@
 
 **"Simulate 3D printed droplet arrays, quickly and easily"** 
 
-natedrop.jl is a **particle simulation** for printed, liquid coated aqueous droplets that adhere to each other and form stable lipid bilayers. These droplets can be arranged in networks that display large scale emergent behavior. Currently the modelling of the adhesion between droplets is approximated by a linear spring of stiffness, k. Additionally, water can flow through the bilayers from an area of low osmolarity to an area of high osmolarity through the circular area of intersection between droplets. Both of these relationships can, in tandem, lead to dynamic folding and unfolding of droplets arrays, which can form shapes not possible through simple printing. The folding and unfolding behavior can also lead to future application in the field of soft robotics. 
+natedrop.jl is a **particle simulation** for printed, liquid coated aqueous droplets that adhere to each other and form stable lipid bilayers. These droplets can be arranged in networks that display large scale emergent behavior. Currently the modelling of the adhesion between droplets is approximated by a linear spring of stiffness, k. Additionally, water can flow through the bilayers from an area of low osmolarity to an area of high osmolarity through the circular area of intersection between droplets. Both of these relationships can, in tandem, lead to dynamic folding and unfolding of droplets arrays, which can form shapes not possible through simple printing. The folding and unfolding behavior can also lead to future application in the field of soft robotics. When the simulation is done running, an xyz file will be printed that can be run within visualization software. 
 
 ## How to use: 
 
@@ -41,6 +41,15 @@ using DifferentialEquations
 L = 0.8 # The natural length proportional to the radii that droplets will settle at
 k = 1000. # The spring force between each droplet
 rho = 0.2 # The density of the droplet, used to calculate the mass of each droplet within the system as a function of radius.
+gamma = 30. # The simplified version of both fluid response and spring damping in the system
+D = 2. *10^-2  # The rate at which diffusion will happen in the system
+boolean_osm = [0.0] # The "on" switch for when the diffusion in the sytem will activate
+timeend = 250. # The time at which the ODE will end
 
+# Now create the matrix for the initial radius, osmolarity, positions, and velocities for these two droplets on the x-axis
+ICmatrix = [3 0.1 0 0 0 0 0 0; 3 1 6 0 0 0 0 0]
+# Now call the function dropvecj!, which will solve an ordinary differential equation for the given timespan, and will print out an xyz file 
+dropvecj!(rho, k, L , gamma, D, timeend, ICmatrix, boolean_osm, tstepextract)
 ```
 
+Using that code, a basic simulation such as this one should be implemented:
