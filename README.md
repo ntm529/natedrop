@@ -1,5 +1,5 @@
 # natedrop.jl
-![Alt Text](https://media.giphy.com/media/G4Ie2fQ6vMd7mzj4ID/giphy.gif)
+<iframe src="https://giphy.com/embed/G4Ie2fQ6vMd7mzj4ID" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/G4Ie2fQ6vMd7mzj4ID">via GIPHY</a></p>
 
 **"Simulate 3D printed droplet arrays, quickly and easily"** 
 
