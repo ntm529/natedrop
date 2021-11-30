@@ -1,5 +1,7 @@
 # natedrop.jl
 
+<img src="https://imgur.com/a/xipdHk4">
+
 
 **"Simulate 3D printed droplet arrays, quickly and easily"** 
 
