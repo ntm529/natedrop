@@ -23,7 +23,7 @@ each droplet in natedrop is represented as a row in a matrix. Each row will have
 - Column 7: Y-velocity
 - Column 8: Z-velocity
 
-A recommended radius is 3 for all droplets, initially. A recommended osmolarity would be either 0.1 or 1 for your droplets. 
+There may be as many rows, and therefore as many droplets as desired. A recommended initial radius is 3 for all droplets, initially. A recommended osmolarity would be either 0.1 or 1 for your droplets. 
 ### Specifying the other parameters that need to be fed into the function. 
 - Additionally, the natural length between each droplet, **L** needs to be specified for the function. A lower **L**-value will have the droplets stick closer together. A recommended **L**-value is 0.8 
 - The bilayer attraction is represented as a linear spring of stiffness **K**. A recommended K-value is 1000.0
