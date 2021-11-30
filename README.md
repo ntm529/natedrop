@@ -57,3 +57,5 @@ ICmatrix = [3 0.1 0 0 0 0 0 0; 3 1 6 0 0 0 0 0]
 # Now call the function dropvecj!, which will solve an ordinary differential equation for the given timespan, and will print out an xyz file 
 dropvecj!(rho, k, L , gamma, D, timeend, ICmatrix, boolean_osm)
 ```
+Use the .xyz file (default is a .ovito file) and view it in visualization software of your choice. The end of the simulation at 250 seconds should look like so: 
+![](images/githubpic5.png)
