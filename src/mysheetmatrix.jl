@@ -82,10 +82,10 @@ function myStableSheetMatrix(r, n, L)
 
 
 
-    printstyled("ix is given to us as"; color = :green)
-    display(ix)
-    printstyled("jx is given to us as"; color = :green)
-    display(jx)
+    # printstyled("ix is given to us as"; color = :green)
+    # display(ix)
+    # printstyled("jx is given to us as"; color = :green)
+    # display(jx)
     bottomstart = 0 
 
     # ix = collect(bottomstart:          2*r*L:         bottomend)'
@@ -113,7 +113,7 @@ function myStableSheetMatrix(r, n, L)
 
 
     jx = repeat(jx',n-1,1)
-    display(jx)
+    # display(jx)
 
     testrad = r * ones(length(ix)+length(jx),1)
     # printstyled("tesrad is given to us as"; color = :green)
@@ -147,7 +147,20 @@ function myStableSheetMatrix(r, n, L)
     return firstmat
 
 
-end
+end # End function 
 
 
 
+# function mystabletrianglematrix(side_droplet_count, radius, L )
+#     #Creates an equillateral triangle with sides of parameter side_droplet_count
+#     for i in 1:side_droplet_count
+
+
+
+
+
+
+
+
+
+# end # End function 

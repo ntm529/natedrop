@@ -1,0 +1,32 @@
+        - function myStableLoopMatrix(radii , L, dropletcount, osmolaritybase, osmolaritytop)
+        - 
+      128     radiivector = radii * ones(dropletcount,1)
+        -     
+        0     dropletnum = Int(dropletcount/2)
+        -     
+        0     ix = range(0, step = 2* radii*L, stop =  (2 * radii * dropletnum - radii)*L )
+        0     ix = collect(ix)
+      112     iy = zeros(1,dropletnum)
+      112     iz = zeros(1,dropletnum)
+        -     
+        0     jx = range(radii*L, step = 2*radii*L, stop = 2*radii*dropletnum*L)
+        0     jx = collect(jx)
+       96     jy = repeat([sqrt(3*radii^2)*L], 1, dropletnum)
+      112     jz = zeros(1,dropletnum)
+        -     
+      224     velocities = zeros(dropletcount, 3)
+        -     
+        -     
+        0     loopmatrix = [[[ix  iy'  iz'] ; [jx  jy' jz']]  velocities]
+        -     
+        -     
+      112     osmolaritybase = osmolaritybase * ones(dropletnum,1)
+      112     osmolaritytop = osmolaritytop * ones(dropletnum,1)
+        0     osmolarities = [osmolaritybase ; osmolaritytop]
+        -     
+        0     stableloopmatrix = [radiivector osmolarities loopmatrix ]
+        -     
+        -     end
+        -     
+        -     
+        -     

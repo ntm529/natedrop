@@ -6,10 +6,12 @@ include("myStableLoopMatrix.jl")
 
 include("mysheetmatrix.jl")
 
-include("E:/Research Scripts and Functions/Julia Scripts/mydropletvectorj!.jl")
+# include("E:/Research Scripts and Functions/Julia Scripts/mydropletvectorj!.jl")
+include("E:/Research Scripts and Functions/Julia Scripts/mydropletvectorjcomponents.jl")
 include("Droplet_Sphere_sheet.jl")
 
-using .MyDropletVectorJ!
+# using .MyDropletVectorJ!
+using .MyDropletVectorJComponents
 using LinearAlgebra
 using DifferentialEquations
 using Plots
@@ -24,18 +26,18 @@ using StatsPlots
 # volume is given as 10
 radii = 3
 # (3/4 * 1/pi * 10)^(1/3) for the real radii 
-dropletcount =  100
+dropletcount =  5
 osmolaritybase = 1.
-osmolaritytop = 0.3
+osmolaritytop = 0.1
 
 
 # Note: For future reference, the method should be used on Float64 values for type specification, right now Any is used.
-ρ = 0.2 # The de`nsity of the droplet, used to calculate the mass of each droplet within the system as a function of radius. To wit Eqn = mass(rho,volume(radius))
+ρ = 0.2 # The density of the droplet, used to calculate the mass of each droplet within the system as a function of radius. To wit Eqn = mass(rho,volume(radius))
 # 0.2/10 for the real ρ
 k = 1000. # The spring force between each droplet 
 L = 0.8 # The natural length proportional to the radii that droplets will settle at
 γ = 30. # The simplified version of both fluid response and spring damping in the system
-timeend = 200. # The time at which the ODE will end
+timeend = 250. # The time at which the ODE will end
 D = 2. *10^-2  # The rate at which diffusion will happen in the system
 boolean_osm = [0.0] # The "on" switch for when the diffusion in the sytem will activate
 tstepextract = Int(timeend * 10) 
@@ -44,7 +46,7 @@ tstepextract = Int(timeend * 10)
 
 
 
-# ICmatrix = myStableLoopMatrix(radii , L , dropletcount, osmolaritybase, osmolaritytop); # This is another u0 for testing
+# ICmatrix = myLoopMatrix(radii , dropletcount, osmolaritybase, osmolaritytop); # This is another u0 for testing
 # function myCircleMat(droplet_radius, bottom_sheet_radius_in_droplets, top_sheet_radius_in_droplets, bottom_osm, top_osm, L)
 
 # ICmatrix = myCircleMat(radii, 6, 5, osmolaritybase, osmolaritytop, L)
@@ -54,36 +56,41 @@ tstepextract = Int(timeend * 10)
 
 # ICmatrix = [3 0.1 0 0 0 0 0 0; 3 1 0 0 6 0 0 0] # The incorrect z coords 
 # ICmatrix = [3 0.1 0 0 0 0 0 0; 3 1 0 6 0 0 0 0] # The y coords
+
+
+
 # ICmatrix = [3 0.1 0 0 0 0 0 0; 3 1 6 0 0 0 0 0] # The x coords
+
+
+
+
 # ICmatrix = [3 0.1 0 0 0 0 0 0; 3 1 4 3 2 0 0 0; 3 1 -4 1 1 0 0 0] # The hybrid coords
-ICmatrix = myStableSheetMatrix(radii, 5, L)
 # a = @elapsed dropvecj!(ρ, k, L , γ, D, timeend, ICmatrix, boolean_osm, tstepextract)
+# ICmatrix = myStableSheetMatrix(radii, dropletcount, L)
+# display(ICmatrix)
+# a = @time dropvecj!(ρ, k, L , γ, D, timeend, ICmatrix, boolean_osm)
+
+# dropvecj!(ρ, k, L , γ, D, timeend, ICmatrix, boolean_osm)
 
 
+O = []
+drops = []
+for i in 22:52
 
+    ICmatrix = myStableSheetMatrix(radii, i, L)
+    push!(drops, (i^2 + (i-1)^2))
+    display(drops)
+    a = @elapsed dropvecj!(ρ, k, L , γ, D, timeend, ICmatrix, boolean_osm)
+    push!(O,a)
+    display(O)
+    zed = plot(drops, O, title = "Test results vs nlog(ϕ,n) time" , bg = :black, legend =:topleft, label = "Results")
+    plot!(drops, drops .* log.(100,drops), label = "nLog_{100}n complexity")
 
-a = @time dropvecj!(ρ, k, L , γ, D, timeend, ICmatrix, boolean_osm, tstepextract)
-
-
-# O = []
-# drops = []
-# for i in 2:50
-
-#     ICmatrix = myStableSheetMatrix(radii, i, L)
-#     push!(drops, (i^2 + (i-1)^2))
-#     display(drops)
-#     a = @elapsed dropvecj!(ρ, k, L , γ, D, timeend, ICmatrix, boolean_osm, tstepextract)
-#     push!(O,a)
-#     display(O)
-#     zed = plot(drops, O, title = "Test results vs nlog(ϕ,n) time" , bg = :black, legend =:topleft, label = "Results")
-#     plot!(drops, drops .* log.(8,drops), label = "nLog_{8}n complexity")
-#     plot!(drops, drops .* log.(49,drops), label = "nLog_{49}n complexity")
-#     plot!(drops, drops .* log.(100,drops), label = "nLog_{100}n complexity")
-
-#     display(zed)
+    display(zed)
     
 
-# end # end loop
+end # end loop
+
 
 # if dropletcount > 4    
 #     xinner = graphics[1]

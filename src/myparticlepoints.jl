@@ -12,10 +12,19 @@ mutable struct Droplet
     xacceleration::Float64
     yacceleration::Float64
     zacceleration::Float64
-    
-    # Add velocities since dvelocity has γ .* velocities in it 
     searchradius::Float64
 end # End the struct
 
-export Droplet
+
+mutable struct TreeCellData
+    list::Vector{Droplet}
+    endindex::Int64
+end # End the struct
+
+
+
+
+
+export Droplet, TreeCellData
 end # End the module
+
