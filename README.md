@@ -48,6 +48,7 @@ timeend = 250. # The time at which the ODE will end
 
 # Now create the matrix for the initial radius, osmolarity, positions, and velocities for these two droplets on the x-axis
 ICmatrix = [3 0.1 0 0 0 0 0 0; 3 1 6 0 0 0 0 0]
+
 # Now call the function dropvecj!, which will solve an ordinary differential equation for the given timespan, and will print out an xyz file 
 dropvecj!(rho, k, L , gamma, D, timeend, ICmatrix, boolean_osm)
 ```
