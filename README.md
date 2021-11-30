@@ -2,6 +2,8 @@
 
 ![](images/githubpic1.png)
 ![](images/githubpic2.png)
+![](images/githubpic3.png)
+![](images/githubpic4.png)
 
 
 **"Simulate 3D printed droplet arrays, quickly and easily"** 
